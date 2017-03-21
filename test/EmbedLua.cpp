@@ -9,6 +9,37 @@
 
 using namespace std;
 
+int sum(int a, int b)
+{
+	return a + b;
+}
+
+int cpp_Sum(lua_State* luaVM)
+{
+	//determine number of parameters on the stack
+	int numParams = lua_gettop(luaVM);
+	if (numParams<2)
+	{
+		cout << "not enough params" << endl;
+		return 0;
+	}
+	// check parameter types
+	if (!lua_isnumber(luaVM, -1) || !lua_isnumber(luaVM, -2))
+	{
+		cout << "bad parameters" << endl;
+		return 0;
+	}
+	//retrieve the parameters from the stack
+	int num2 = (int)lua_tonumber(luaVM, -1);
+	int num1 = (int)lua_tonumber(luaVM, -2);
+	//call the real function
+	int result = sum(num1, num2);
+	//push the result onto the stack
+	lua_pushnumber(luaVM, result);
+	//return the number of values returned
+	return 1;
+}
+
 int main()
 {
 	int i;
@@ -19,6 +50,9 @@ int main()
 		cout << "Error Initializing lua" << endl;;
 		return -1;
 	}
+
+	//register our wrapper
+	lua_register(L, "cpp_Sum", cpp_Sum);
 
 	// load standard lua library functions
 	luaL_openlibs(L);
@@ -54,6 +88,15 @@ int main()
 		<< "Number of Sectors: " << numSectors << endl
 		<< "Number of Rooms: " << numRooms << endl;
 
+	//register c++ function and clear stack
+	lua_settop(L, 0);
+	cout << "\nRunning script4.lua\n";
+	if (luaL_dofile(L, "scripts/script4.lua")) {
+		cout << "error opening file\n";
+		getchar(); return 1;
+	}
+	cout << "script4.lua ran successfully, return to C++\n\n";
+
 	cout << "closing lua state\n\n";
 	lua_close(L);
 
@@ -62,4 +105,3 @@ int main()
 
     return 0;
 }
-
