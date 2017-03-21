@@ -23,7 +23,7 @@ int main()
 	luaL_openlibs(L);
 
 	// load and run Lua script
-	if (luaL_dofile(L, "scripts/script1.lua")) {
+	if (luaL_dofile(L, "scripts/script2.lua")) {
 		cout << "error opening file\n";
 		getchar(); return 1;
 	}
