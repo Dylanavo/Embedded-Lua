@@ -1,7 +1,7 @@
 # Embedded Lua
 Embedding Lua in to C++
 
-To be used in a C++ based game engine focused on loosely coupled classes, easy of modification, and readability. 
+To be used in a C++ based game engine focused on loosely coupled classes, ease of modification, and readability. 
 
 # More about the engine
 Project for 3rd year university unit focused on creating a game engine generic enough to allow various games to be implemented without coupling game design and game logic to the engine.
