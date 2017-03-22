@@ -18,7 +18,7 @@ public:
 	virtual bool runScript(std::string p_scriptName) = 0;
 	virtual bool callScriptFunction(int p_numArgs, int p_numResults) = 0;
 	virtual bool checkScriptFunction(std::string p_funcName) = 0;
-	virtual void registerFunction(std::string p_funcName, void(*f)(void)) = 0;
+	virtual void registerFunction(std::string p_funcName, void(*p_func)(void)) = 0;
 
 	//stack manipulation
 	virtual void getGlobal() = 0;
