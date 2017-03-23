@@ -1,0 +1,1 @@
+numObjects = 3;
