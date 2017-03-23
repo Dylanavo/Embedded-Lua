@@ -8,6 +8,10 @@
 // class with ScriptingPython and as long as we implement all
 // the functions defined in ScriptingInterface it shouldn't
 // affect any other parts of the engine
+//
+// dumpStack seems to be causing unexpected corruption of data
+// on the stack, not sure why yet so use with caution. It can
+// still be handy for debugging purposes
 
 class ScriptingLua : public ScriptingInterface
 {

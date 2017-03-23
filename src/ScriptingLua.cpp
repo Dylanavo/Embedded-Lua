@@ -100,30 +100,56 @@ float ScriptingLua::popFloat()
 
 std::string ScriptingLua::popString()
 {
-	return std::string();
+	std::string l_string = "";
+
+	if (!lua_isstring(m_state, -1))
+	{
+		luaL_error(m_state, "Error: string was expected at top of stack");
+	}
+	else
+	{
+		l_string += lua_tostring(m_state, -1);
+		lua_pop(m_state, 1);
+	}
+
+	return l_string;
 }
 
 bool ScriptingLua::isEmpty(int p_ind)
 {
-	return false;
+	return lua_isnil(m_state, p_ind);
 }
 
 bool ScriptingLua::isInt(int p_ind)
 {
-	return false;
+	return lua_isinteger(m_state, p_ind);
 }
 
 bool ScriptingLua::isFloat(int p_ind)
 {
-	return false;
+	return lua_isnumber(m_state, p_ind);
 }
 
 bool ScriptingLua::isString(int p_ind)
 {
-	return false;
+	return lua_isstring(m_state, p_ind);
 }
 
 std::string ScriptingLua::dumpStack()
 {
-	return std::string();
+	int l_top = lua_gettop(m_state);
+	std::string l_return = "Number of elements on stack: ";
+	l_return += std::to_string(l_top);
+	l_return += "\n";
+
+	for (int i = 1; i <= l_top; i++)
+	{
+		l_return += "Element ";
+		l_return += std::to_string(i);
+		l_return += ": ";
+		l_return += lua_tostring(m_state, -(i));
+		l_return += "\n";
+	}
+
+	return l_return;
 }
