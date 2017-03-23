@@ -11,6 +11,8 @@ This class also serves as a C++ wrapper for the lower level C API that Lua uses 
 
 Technically we should be able to replace this class with something like ScriptingPython, and as long as we implement all the functions defined in the interface, the engine shouldn't be affected by the change
 
+Still need to implement calling functions between C++ and Lua, as well as classes. May use the Selene Lua wrapper to implement instead of trying to write my own wrappers for binding functions/classes
+
 # GameObject
 Very simple dummy class to represent what a game object might look like in our engine, this is included for demonstration purposes
 
