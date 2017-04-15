@@ -1,1 +1,0 @@
-numObjects = 3;
