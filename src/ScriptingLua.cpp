@@ -83,7 +83,7 @@ int ScriptingLua::popInt()
 
 float ScriptingLua::popFloat()
 {
-	int l_num = 0.0f;
+	float l_num = 0.0f;
 
 	if (!lua_isnumber(m_state, -1))
 	{
