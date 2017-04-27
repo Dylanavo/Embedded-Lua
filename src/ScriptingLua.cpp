@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "ScriptingLua.h"
 
 bool ScriptingLua::runScript(std::string p_scriptName)
